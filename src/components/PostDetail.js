@@ -76,5 +76,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(PostDetail)
-
-PostDetail.propTypes = {}
