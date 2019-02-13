@@ -1,75 +1,80 @@
-/**
- * Created by farid on 8/16/2017.
- */
-import React, {Component} from "react";
-import CommentsContainer from "./CommentsContainer";
-import Post from "./Post";
-import {connect} from "react-redux";
-import {fetchPostDetail} from "../actions/Post";
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import CommentsContainer from './CommentsContainer'
+import Post from './Post'
+import { fetchPostDetail } from '../actions/Post'
 
 
 class PostDetail extends Component {
+  state = {
+    post: {},
+  }
 
-    state = {
-        post: {}
-    };
+  componentDidMount() {
+    const { getPostDetail, match } = this.props
+    getPostDetail(match.params.id)
+  }
 
-    componentDidMount() {
-        this.props.getPostDetail(this.props.match.params.id);
-    }
+  componentWillReceiveProps(newProps) {
+    const { post } = newProps
+    if (post) this.setState({ post })
+  }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.post) {
-            this.setState({
-                post: newProps.post
-            })
-        }
+  render() {
+    const { post } = this.state
+    const { comments } = this.props
 
-    }
-
-    render() {
-        return (
-            <div>
-                {
-                    this.state.post.id && (
-                        <div className="container">
-                            <Post post={this.state.post} isEditEnabled={true} isDeleteEnabled={true}/>
-                            <br/>
-                            {
-                                this.props.comments && (
-                                    <CommentsContainer comments={this.props.comments} post={this.state.post}/>
-                                )
-                            }
-                        </div>
-                    )
-                }
-
-            </div>
-        )
-    }
+    return (
+      <div>
+        {post.id && (
+          <div className="container">
+            <Post post={post} isEditEnabled isDeleteEnabled />
+            <br />
+            {comments && (
+              <CommentsContainer
+                comments={comments}
+                post={post}
+              />
+            )}
+          </div>
+        )}
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state, props) => {
-    let comments = state.comment.comments.filter(comment => comment.parentId === props.match.params.id && !comment.deleted);
-    comments.sort((commentA, commentB) => {
-        if (commentA.voteScore > commentB.voteScore)
-            return -1;
-        else
-            return 1
-    });
-    return {
-        comments: comments,
-        post: state.post.posts.filter(post => post.id === props.match.params.id)[0]
-    }
-};
+  const comments = state.comment.comments.filter(comment => (
+    comment.parentId === props.match.params.id && !comment.deleted
+  ))
+
+  comments.sort((commentA, commentB) => {
+    if (commentA.voteScore > commentB.voteScore) return -1
+
+    return 1
+  })
+
+  return {
+    comments,
+    post: state.post.posts.filter(post => post.id === props.match.params.id)[0],
+  }
+}
+
+PostDetail.propTypes = {
+  comments: PropTypes.array,
+  getPostDetail: PropTypes.func,
+  match: PropTypes.bool,
+}
 
 const mapDispatchToProps = dispatch => ({
-    getPostDetail: (postId) => dispatch(fetchPostDetail(postId))
-});
+  getPostDetail: postId => dispatch(fetchPostDetail(postId)),
+})
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(PostDetail)
 
-PostDetail.propTypes = {};
+PostDetail.propTypes = {}

@@ -27,9 +27,13 @@ class Comment extends Component {
   }
 
   bodyOnChangeHandler = (event) => {
-    const newState = {}
+    const newState = {
+      comment: {
+        body: '',
+      },
+    }
     const { value } = event.target
-    newState.comment.body = value
+    newState.comment.body = value || ''
     this.setState(newState)
   };
 
