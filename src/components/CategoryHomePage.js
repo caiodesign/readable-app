@@ -1,25 +1,23 @@
-/**
- * Created by farid on 8/16/2017.
- */
-import React, {Component} from "react";
-import Category from "./Category";
-
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Category from './Category'
 
 class CategoryHomePage extends Component {
+  render() {
+    const { match } = this.props
 
-
-    render() {
-        return (
-            <div className="container">
-                {
-                    this.props.match.params.categoryName && (
-                        <Category name={this.props.match.params.categoryName}/>
-                    )
-                }
-            </div>
-        )
-    }
+    return (
+      <div className="container">
+        {match.params.categoryName && (
+          <Category name={match.params.categoryName} />
+        )}
+      </div>
+    )
+  }
 }
 
-CategoryHomePage.propTypes = {};
-export default CategoryHomePage;
+CategoryHomePage.propTypes = {
+  match: PropTypes.object,
+}
+
+export default CategoryHomePage
