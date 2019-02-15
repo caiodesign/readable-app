@@ -30,3 +30,36 @@
         transform: rotate(360deg);
     }
 }
+
+.card-header{
+  background-color: #000;
+}
+
+.card-header a {
+  color: #fff;
+}
+
+.card-title{
+  position: relative;
+}
+
+.btn-primary{
+  background-color: #000;
+  border: 1px solid #fff;
+}
+
+.btn-close{
+  position: absolute;
+  padding: 4px 9px;
+  right: -35px;
+  top: -35px;
+  background-color: #000;
+  border-radius: 50%;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+.btn-close span{
+  font-size: 14px;
+  color: #fff;
+}

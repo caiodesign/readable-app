@@ -39,26 +39,27 @@ class Post extends Component {
     return (
       <div className="card">
         <div className="card-body">
-          <Link to={`/${post.category}/${post.id}`} className="card-title">
-            <h5>{post.title}</h5>
-          </Link>
-          <p className="card-text">{post.body}</p>
-          {isDeleteEnabled && (
-            <Link
-              to="/"
-              type="button"
-              className="btn btn-danger btn-sm float-right"
-            >
-              <i
-                tabIndex={0}
-                role="button"
-                className="material-icons"
-                onClick={this.deletePostOnClickHandler}
-              >
-                delete
-              </i>
+          <div className="card-title">
+            <Link to={`/${post.category}/${post.id}`}>
+              <h5>{post.title}</h5>
             </Link>
-          )}
+            {isDeleteEnabled && (
+              <Link
+                to="/"
+                type="button"
+                className="btn btn-close"
+              >
+                <span
+                  tabIndex={0}
+                  role="button"
+                  onClick={this.deletePostOnClickHandler}
+                >
+                  X
+                </span>
+              </Link>
+            )}
+          </div>
+          <p className="card-text">{post.body}</p>
           {isEditEnabled && (
             <Link
               to={`/post/update/${post.id}`}

@@ -54,7 +54,7 @@ class CreatePost extends Component {
   }
 
   updateOnClickHandler = () => {
-    const { updatePost } = this.state
+    const { updatePost } = this.props
     updatePost(this.state)
   }
 
@@ -199,6 +199,7 @@ CreatePost.propTypes = {
   getCategories: PropTypes.func,
   isUpdate: PropTypes.bool,
   match: PropTypes.bool,
+  updatePost: PropTypes.func,
 }
 
 export default connect(
