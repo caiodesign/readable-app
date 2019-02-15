@@ -48,12 +48,11 @@ class Post extends Component {
                 to="/"
                 type="button"
                 className="btn btn-close"
+                tabIndex={0}
+                role="button"
+                onClick={this.deletePostOnClickHandler}
               >
-                <span
-                  tabIndex={0}
-                  role="button"
-                  onClick={this.deletePostOnClickHandler}
-                >
+                <span>
                   X
                 </span>
               </Link>
