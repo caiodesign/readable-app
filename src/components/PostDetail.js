@@ -27,8 +27,8 @@ class PostDetail extends Component {
     const { comments } = this.props
 
     return (
-      <div>
-        {post.id && (
+      <div className="relative">
+        {post.id ? (
           <div className="container">
             <Post post={post} isEditEnabled isDeleteEnabled />
             <br />
@@ -39,7 +39,13 @@ class PostDetail extends Component {
               />
             )}
           </div>
-        )}
+        ) : (
+          <div className="notFound">
+            <h1>Post not found!</h1>
+            <p>:(</p>
+          </div>
+        )
+      }
       </div>
     )
   }

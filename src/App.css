@@ -64,3 +64,20 @@
   font-size: 14px;
   color: #fff;
 }
+
+.relative{
+  position: relative;
+  min-height: calc(100vh - 100px);
+}
+
+.notFound{
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 100px);
+  transform: translate(-50%);
+}
+
+.notFound p{
+  text-align: center;
+  font-size: 30px;
+}
