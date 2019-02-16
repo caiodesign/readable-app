@@ -55,8 +55,15 @@ class Comment extends Component {
 
     updateCommentOnClickHandler = () => {
       const { updateComment } = this.props
-      const { comment } = this.state
-      updateComment(comment)
+      const { id } = this.props.comment
+      const { body } = this.state.comment
+
+      const newComment = {
+        id,
+        body,
+      }
+
+      updateComment(newComment)
       this.setState(prevState => ({
         isEditable: !prevState.isEditable,
       }))
