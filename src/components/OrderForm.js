@@ -56,7 +56,9 @@ class OrderForm extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-4">
+        <span className="col-md-5">&nbsp;</span>
+        <span className="col-md-5">&nbsp;</span>
+        <div className="col-md-2">
           <button
             type="button"
             className="btn btn btn-dark btn-sm"
@@ -65,36 +67,6 @@ class OrderForm extends Component {
           >
             Rate
             {orderBy.rateDesc ? (
-              <i className="material-icons">keyboard_arrow_up</i>
-            ) : (
-              <i className="material-icons">keyboard_arrow_down</i>
-            )}
-          </button>
-        </div>
-        <div className="col-md-4">
-          <button
-            type="button"
-            className="btn btn btn-dark btn-sm"
-            title="Order by date"
-            onClick={this.dateOnClickHandler}
-          >
-            Date
-            {orderBy.dateDesc ? (
-              <i className="material-icons">keyboard_arrow_up</i>
-            ) : (
-              <i className="material-icons">keyboard_arrow_down</i>
-            )}
-          </button>
-        </div>
-        <div className="col-md-4">
-          <button
-            type="button"
-            className="btn btn btn-dark btn-sm"
-            title="Order by author"
-            onClick={this.authorOnClickHandler}
-          >
-            Author
-            {orderBy.authorDesc ? (
               <i className="material-icons">keyboard_arrow_up</i>
             ) : (
               <i className="material-icons">keyboard_arrow_down</i>
